@@ -25,5 +25,7 @@ module.exports = {
     'no-restricted-exports': 0,
     'react/jsx-props-no-spreading': 0,
     'no-alert': 0,
+    'react/prop-types': 0,
+    'react/void-dom-elements-no-children': 0,
   },
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { getRegistrationUserInfo } from '../../../redux/slices/userSlice';
+import AuthInput from '../../../UI/AuthInput/AuthInput';
 
 export default function Registration() {
   const {
@@ -25,7 +26,8 @@ export default function Registration() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username">
           Никнейм
-          <input
+          <br />
+          <AuthInput
             id="username"
             {...register('username', {
               required: 'Поле обязательно к заполнению!',
@@ -40,7 +42,8 @@ export default function Registration() {
         </label>
         <label htmlFor="email">
           Почта
-          <input
+          <br />
+          <AuthInput
             id="email"
             {...register('email', {
               required: 'Поле обязательно к заполнению!',
@@ -56,7 +59,8 @@ export default function Registration() {
         </label>
         <label htmlFor="email">
           Пароль
-          <input
+          <br />
+          <AuthInput
             id="password"
             {...register('password', {
               required: 'Поле обязательно к заполнению!',
