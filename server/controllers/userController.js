@@ -53,6 +53,20 @@ class UserController {
     };
     res.json(req.session.user);
   }
+
+  async check(req, res) {
+    console.log(req.session.user);
+    if (req.session.user) {
+      return res.json(req.session.user);
+    }
+    return res.json({});
+  }
+
+  async logout(req, res, next) {
+    res.clearCookie('sid', { domain: 'localhost', path: '/' });
+    req.session.destroy();
+    res.json({});
+  }
 }
 
 module.exports = new UserController();

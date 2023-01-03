@@ -21,6 +21,18 @@ const getLoginUserInfo = (data) => async (dispatch) => {
   dispatch(setUser(res.data));
 };
 
+const isAuth = () => async (dispatch) => {
+  const res = await axios('api/user/check');
+  dispatch(setUser(res.data));
+};
+
+const getUserLogout = () => async (dispatch) => {
+  const res = await axios('api/user/logout');
+  dispatch(setUser(res.data));
+};
+
 export default userSlice.reducer;
 
-export { getRegistrationUserInfo, getLoginUserInfo };
+export {
+  getRegistrationUserInfo, getLoginUserInfo, isAuth, getUserLogout,
+};
