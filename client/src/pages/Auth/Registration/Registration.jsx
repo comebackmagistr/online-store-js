@@ -57,7 +57,7 @@ export default function Registration() {
           />
           <div>{errors?.email && <p>{errors?.email?.message || 'Введите корректный адрес почты!'}</p>}</div>
         </label>
-        <label htmlFor="email">
+        <label htmlFor="password">
           Пароль
           <br />
           <AuthInput

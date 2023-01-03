@@ -16,6 +16,11 @@ const getRegistrationUserInfo = (data) => async (dispatch) => {
   dispatch(setUser(res.data));
 };
 
+const getLoginUserInfo = (data) => async (dispatch) => {
+  const res = await axios.post('api/user/login', data);
+  dispatch(setUser(res.data));
+};
+
 export default userSlice.reducer;
 
-export { getRegistrationUserInfo };
+export { getRegistrationUserInfo, getLoginUserInfo };

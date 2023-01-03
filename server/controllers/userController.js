@@ -29,6 +29,30 @@ class UserController {
     };
     res.json(req.session.user);
   }
+
+  async login(req, res, next) {
+    const { username, password } = req.body;
+    console.log(username, password);
+    if (!username || !password) {
+      return next(ApiError.badRequest('Некорректный никнейм или пароль'));
+    }
+
+    const findUserUsername = await User.findOne({
+      where: { username },
+    });
+    if (!findUserUsername) {
+      return next(ApiError.badRequest('Пользователя с таким никнеймом не существует'));
+    }
+    const isValid = await bcrypt.compare(password, findUserUsername.password);
+    if (!isValid) {
+      console.log(isValid, password);
+      return next(ApiError.badRequest('Неверный пароль'));
+    }
+    req.session.user = {
+      id: findUserUsername.id, username: findUserUsername.username, email: findUserUsername.email,
+    };
+    res.json(req.session.user);
+  }
 }
 
 module.exports = new UserController();
