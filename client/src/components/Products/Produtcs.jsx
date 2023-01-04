@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../redux/slices/productSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import OneCardProduct from '../../UI/OneCardProduct/OneCardProduct';
 import styles from './products.module.css';
 
 export default function Produtcs() {
-  const dispatch = useDispatch();
   const products = useSelector((store) => store.products);
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
   return (
     <div>
       {products.length > 0

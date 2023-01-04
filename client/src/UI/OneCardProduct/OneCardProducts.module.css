@@ -3,7 +3,6 @@
     width: 350px;
     flex-direction: column;
     border: 1px solid black;
-    margin-top: 15px;
     align-items: center;
     border-radius: 10px;
 }
