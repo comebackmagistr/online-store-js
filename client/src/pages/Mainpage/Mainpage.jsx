@@ -1,7 +1,11 @@
 import React from 'react';
+import Produtcs from '../../components/Products/Produtcs';
 
 export default function Mainpage() {
   return (
-    <div>Mainpage</div>
+    <div>
+      Mainpage
+      <Produtcs />
+    </div>
   );
 }
