@@ -1,0 +1,23 @@
+.one_card_body {
+    display: flex;
+    width: 350px;
+    flex-direction: column;
+    border: 1px solid black;
+    margin-top: 15px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.one_card_body span {
+    margin-top: 5px;
+}
+
+.one_card_body img {
+    margin-top: 15px;
+    max-width: 300px;
+    max-height: 200px;
+}
+
+.one_card_body:hover {
+    cursor: pointer;
+}

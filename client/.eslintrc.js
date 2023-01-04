@@ -29,5 +29,6 @@ module.exports = {
     'react/void-dom-elements-no-children': 0,
     'jsx-a11y/label-has-associated-control': 0,
     'array-callback-return': 0,
+    'import/no-cycle': 0,
   },
 };
