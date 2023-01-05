@@ -1,6 +1,11 @@
-.cards_row {
+.cards {
+    width: 100vw;
+}
+
+
+.cards__row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
+

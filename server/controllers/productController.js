@@ -10,6 +10,20 @@ class ProductController {
       next(ApiError.badRequest(error.message));
     }
   }
+
+  async getAllOnCathegory(req, res, next) {
+    try {
+      const { id } = req.params;
+      const allProductsOnCathegory = await Product.findAll({
+        where: {
+          cathegory_id: id,
+        },
+      });
+      res.json(allProductsOnCathegory);
+    } catch (error) {
+      next(ApiError.badRequest(error.message));
+    }
+  }
 }
 
 module.exports = new ProductController();

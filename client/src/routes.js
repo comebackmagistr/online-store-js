@@ -1,7 +1,9 @@
+import React from 'react';
 import Login from './pages/Auth/Login';
 import Registration from './pages/Auth/Registration';
-import Mainpage from './pages/Mainpage';
 import { LOGIN_ROUTE, MAINPAGE_ROUTE, REGISTRATION_ROUTE } from './utils/paths';
+
+const Mainpage = React.lazy(() => import('./pages/Mainpage'));
 
 export const publicRoutes = [
   {

@@ -1,10 +1,12 @@
 .one_card_body {
     display: flex;
-    width: 350px;
+    width: 150px;
     flex-direction: column;
     border: 1px solid black;
     align-items: center;
     border-radius: 10px;
+    margin-right: 35px;
+    margin-top: 20px;
 }
 
 .one_card_body span {
@@ -13,8 +15,8 @@
 
 .one_card_body img {
     margin-top: 15px;
-    max-width: 300px;
-    max-height: 200px;
+    width: 100px;
+    height: 100px;
 }
 
 .one_card_body:hover {

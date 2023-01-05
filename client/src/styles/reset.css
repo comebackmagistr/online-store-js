@@ -99,3 +99,7 @@ label {
 legend {
 	display: block;
 }
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+    background-color: grey !important;
+}

@@ -1,4 +1,16 @@
 .cathegories_column {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
+    margin-right: 80px;
+}
+
+.button_cathegory {
+    font-size: 20px;
+    border-bottom: 1px solid black;
+}
+
+.button_cathegory:hover {
+    cursor: pointer;
+    color:grey
 }

@@ -16,6 +16,11 @@ const getAllProducts = () => async (dispatch) => {
   dispatch(setProducts(res.data));
 };
 
+const getIdCathegory = (id) => async (dispatch) => {
+  const res = await axios(`api/product/${id}`);
+  dispatch(setProducts(res.data));
+};
+
 export default userSlice.reducer;
 
-export { getAllProducts };
+export { getAllProducts, getIdCathegory };
