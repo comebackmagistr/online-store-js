@@ -10,7 +10,7 @@ export default function OneCardProduct({ card }) {
     dispatch(addBasketItemForUser({ id: card.id }));
   };
   const deleteItemHandler = () => {
-    dispatch(deleteBasketItemForUser({ id: card.id }));
+    dispatch(deleteBasketItemForUser({ id: basket[basket.findIndex((el) => el.product_id === card.id)].id }));
   };
   return (
     <div className={styles.one_card_body}>

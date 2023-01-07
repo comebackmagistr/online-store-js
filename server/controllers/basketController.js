@@ -21,17 +21,9 @@ class BasketController {
   async addOneItem(req, res, next) {
     try {
       const { id } = req.body;
-      await Bascket.create({
+      const findItem = await Bascket.create({
         user_id: req.session.user.id,
         product_id: id,
-      });
-      const findItem = await Bascket.findOne({
-        where: {
-          product_id: id,
-        },
-        include: {
-          model: Product,
-        },
       });
       res.json(findItem);
     } catch (error) {
@@ -45,10 +37,10 @@ class BasketController {
       await Bascket.destroy({
         where: {
           user_id: req.session.user.id,
-          product_id: id,
+          id,
         },
       });
-      res.status(200);
+      res.json(id);
     } catch (error) {
       next(ApiError.badRequest(error.message));
     }

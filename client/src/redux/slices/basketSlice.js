@@ -7,7 +7,7 @@ export const basketSlice = createSlice({
   reducers: {
     setBasketItems: (state, action) => action.payload,
     addBasketItems: (state, action) => [...state, action.payload],
-    deleteBasketItems: (state, action) => state.filter((el) => el === action.payload),
+    deleteBasketItems: (state, action) => state.filter((el) => el.id !== Number(action.payload)),
   },
 });
 
@@ -24,11 +24,8 @@ const addBasketItemForUser = (id) => async (dispatch) => {
 };
 
 const deleteBasketItemForUser = ({ id }) => async (dispatch) => {
-  console.log(id);
   const res = await axios.delete(`/api/basket/deleteitem/${id}`);
-  if (res.status === 200) {
-    dispatch(deleteBasketItems(id));
-  }
+  dispatch(deleteBasketItems(res.data));
 };
 
 export default basketSlice.reducer;
