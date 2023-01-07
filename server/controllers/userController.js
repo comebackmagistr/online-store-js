@@ -26,7 +26,7 @@ class UserController {
         username, email, password: hashPassword,
       });
       req.session.user = {
-        id: user.id, username: user.username, email: user.email,
+        id: user.id, username: user.username, email: user.email, balance: user.balance,
       };
       res.json(req.session.user);
     } catch (error) {
@@ -54,7 +54,7 @@ class UserController {
         return next(ApiError.badRequest('Неверный пароль'));
       }
       req.session.user = {
-        id: findUserUsername.id, username: findUserUsername.username, email: findUserUsername.email,
+        id: findUserUsername.id, username: findUserUsername.username, email: findUserUsername.email, balance: findUserUsername.balance,
       };
       res.json(req.session.user);
     } catch (error) {

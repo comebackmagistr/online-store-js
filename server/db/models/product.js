@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.Cathegory, { foreignKey: 'cathegory_id' });
+      this.hasMany(models.Bascket, { foreignKey: 'product_id' });
     }
   }
   Product.init({
