@@ -22,13 +22,24 @@ export default function Basket() {
   };
   return (
     <div>
-      {basket.map((el) => (
-        <OneItemProduct key={el.id} item={el} />
-      ))}
-      Сумма заказа:
-      {' '}
-      {orderSum}
-      <button onClick={submitOrderHandler} type="button">Оформить заказ</button>
+      {basket.length > 0 ? (
+        <>
+          {
+          basket.map((el) => (
+            <OneItemProduct key={el.id} item={el} />
+          ))
+}
+          <br />
+          <span>Сумма заказа:</span>
+          {' '}
+          {orderSum}
+          <br />
+          <button onClick={submitOrderHandler} type="button">Оформить заказ</button>
+        </>
+      )
+        : (
+          <span>В корзине ничего нет</span>
+        )}
     </div>
   );
 }
