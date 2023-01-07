@@ -37,7 +37,6 @@ class UserController {
   async login(req, res, next) {
     try {
       const { username, password } = req.body;
-      console.log(username, password);
       if (!username || !password) {
         return next(ApiError.badRequest('Некорректный никнейм или пароль'));
       }
@@ -50,7 +49,6 @@ class UserController {
       }
       const isValid = await bcrypt.compare(password, findUserUsername.password);
       if (!isValid) {
-        console.log(isValid, password);
         return next(ApiError.badRequest('Неверный пароль'));
       }
       req.session.user = {
@@ -64,7 +62,6 @@ class UserController {
 
   async check(req, res, next) {
     try {
-      console.log(req.session.user);
       if (req.session.user) {
         return res.json(req.session.user);
       }
@@ -79,6 +76,26 @@ class UserController {
       res.clearCookie('sid', { domain: 'localhost', path: '/' });
       req.session.destroy();
       res.json({});
+    } catch (error) {
+      next(ApiError.badRequest(error.message));
+    }
+  }
+
+  async order(req, res, next) {
+    try {
+      const { sum } = req.body;
+      await User.update(
+        {
+          balance: req.session.user.balance - sum,
+        },
+        {
+          where: {
+            id: req.session.user.id,
+          },
+        },
+      );
+      req.session.user.balance -= sum;
+      res.json(req.session.user);
     } catch (error) {
       next(ApiError.badRequest(error.message));
     }

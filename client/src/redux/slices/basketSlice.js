@@ -28,6 +28,13 @@ const deleteBasketItemForUser = ({ id }) => async (dispatch) => {
   dispatch(deleteBasketItems(res.data));
 };
 
+const submitBasketOrder = () => async (dispatch) => {
+  await axios.delete('/api/basket/order');
+  dispatch(setBasketItems([]));
+};
+
 export default basketSlice.reducer;
 
-export { getAllBasketItemsForUser, addBasketItemForUser, deleteBasketItemForUser };
+export {
+  getAllBasketItemsForUser, addBasketItemForUser, deleteBasketItemForUser, submitBasketOrder,
+};

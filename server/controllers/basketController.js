@@ -21,11 +21,19 @@ class BasketController {
   async addOneItem(req, res, next) {
     try {
       const { id } = req.body;
-      const findItem = await Bascket.create({
+      const createItem = await Bascket.create({
         user_id: req.session.user.id,
         product_id: id,
       });
-      res.json(findItem);
+      const findCreateItem = await Bascket.findOne({
+        where: {
+          id: createItem.id,
+        },
+        include: {
+          model: Product,
+        },
+      });
+      res.json(findCreateItem);
     } catch (error) {
       next(ApiError.badRequest(error.message));
     }
@@ -41,6 +49,19 @@ class BasketController {
         },
       });
       res.json(id);
+    } catch (error) {
+      next(ApiError.badRequest(error.message));
+    }
+  }
+
+  async submitOrder(req, res, next) {
+    try {
+      await Bascket.destroy({
+        where: {
+          user_id: req.session.user.id,
+        },
+      });
+      res.json({});
     } catch (error) {
       next(ApiError.badRequest(error.message));
     }

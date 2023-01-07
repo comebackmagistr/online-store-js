@@ -31,8 +31,13 @@ const getUserLogout = () => async (dispatch) => {
   dispatch(setUser(res.data));
 };
 
+const getUserOrderSum = (sum) => async (dispatch) => {
+  const res = await axios.patch('api/user/order', sum);
+  dispatch(setUser(res.data));
+};
+
 export default userSlice.reducer;
 
 export {
-  getRegistrationUserInfo, getLoginUserInfo, isAuth, getUserLogout,
+  getRegistrationUserInfo, getLoginUserInfo, isAuth, getUserLogout, getUserOrderSum,
 };
