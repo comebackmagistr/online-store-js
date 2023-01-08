@@ -5,6 +5,9 @@ import styles from './OneCardProducts.module.css';
 
 export default function OneCardProduct({ card }) {
   const basket = useSelector((store) => store.basket);
+  const user = useSelector((store) => store.user);
+  const count = basket.filter((el) => el.product_id === card.id);
+  const findItem = basket.find((el) => el.product_id === card.id);
   const dispatch = useDispatch();
   const addItemHandler = () => {
     dispatch(addBasketItemForUser({ id: card.id }));
@@ -32,15 +35,26 @@ export default function OneCardProduct({ card }) {
         {' '}
         рублей
       </span>
-      {basket.find((el) => el.product_id === card.id) ? (
-        <>
-          <span>Товар в корзине</span>
-          <button onClick={addItemHandler} type="button">Добавить еще</button>
-          <button onClick={deleteItemHandler} type="button">Удалить из корзины</button>
-        </>
+      {user.username ? (
+        <div>
+          {findItem ? (
+            <>
+              <span>
+                Товар в корзине:
+                {' '}
+                {count?.length}
+              </span>
+              <button onClick={addItemHandler} type="button">Добавить еще</button>
+              <button onClick={deleteItemHandler} type="button">Удалить из корзины</button>
+            </>
+          )
+            : (
+              <button onClick={addItemHandler} type="button">Добавить в корзину</button>
+            )}
+        </div>
       )
         : (
-          <button onClick={addItemHandler} type="button">Добавить в корзину</button>
+          <span>Авторизуйтесь, чтобы купить товар</span>
         )}
 
     </div>
