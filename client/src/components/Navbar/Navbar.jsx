@@ -6,9 +6,14 @@ import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import styles from './navbar.module.css';
+import { Avatar } from '@mui/material';
+import { red } from '@mui/material/colors';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { getUserLogout } from '../../redux/slices/userSlice';
+import styles from './navbar.module.css';
 
 export default function ButtonAppBar() {
   const user = useSelector((store) => store.user);
@@ -17,6 +22,14 @@ export default function ButtonAppBar() {
   const clickOnLoglout = () => {
     dispatch(getUserLogout());
   };
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="primary">
@@ -26,11 +39,6 @@ export default function ButtonAppBar() {
           </Typography>
           {user.username ? (
             <>
-              <span>
-                Вы авторизованы как
-                {' '}
-                {user.username}
-              </span>
               <Link to="/balance">
                 <AccountBalanceWalletIcon />
                 {' '}
@@ -51,20 +59,13 @@ export default function ButtonAppBar() {
                 </span>
               </Link>
               <Link to="/basket">
-                <AddShoppingCartIcon />
-                {basket?.length > 0 ? (
-                  <>
-                    {basket?.length}
-                    {' '}
-                    товаров
-                  </>
-                )
-                  : (
-                    <>
-                      0 товаров
-                    </>
-                  )}
+                <IconButton aria-label="cart">
+                  <StyledBadge badgeContent={basket?.length} color="error">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                </IconButton>
               </Link>
+              <Avatar sx={{ bgcolor: red[900] }}>{user.username[0]}</Avatar>
               <button type="button" onClick={clickOnLoglout}>Выход</button>
             </>
           )

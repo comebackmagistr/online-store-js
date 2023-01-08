@@ -1,3 +1,4 @@
+import { CircularProgress } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import OneCardProduct from '../OneCardProduct/OneCardProduct';
@@ -16,7 +17,7 @@ export default function Produtcs() {
           </div>
         )
         : (
-          <div>Loading</div>
+          <div><CircularProgress /></div>
         )}
     </div>
   );
